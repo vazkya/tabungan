@@ -30,7 +30,7 @@
         </div>
         <div class="row my-5">
         <div class="col-lg-6">
-            <nuxt-link to="../siswa">
+            <nuxt-link to="/siswa">
             <div class="card bg-secondary rounded-5">
                 <div class="card-body">
                     <h2 class="font" style="color: white">DAFTAR SISWA</h2>
@@ -39,7 +39,7 @@
             </nuxt-link>
         </div>
         <div class="col-lg-6">
-            <nuxt-link to="/buku">
+            <nuxt-link to="/rekap">
             <div class="card bg-secondary rounded-5">
                     <div class="card-body">
                         <h1 class="font" style="color: white">REKAP BULANAN</h1>
@@ -53,25 +53,6 @@
 </template>
 <script setup>
 const supabase = useSupabaseClient();
-const jumlahpengunjung = ref(0);
-const jumlahbuku = ref(0);
-async function ambiljumlahpengunjung() {
-    const { data, error, count } = await supabase
-    .from("pengunjung")
-    .select("*", { count: "exact" });
-    if (count) jumlahpengunjung.value = count;
-}
-async function ambiljumlahbuku() {
-    const { data, error, count } = await supabase
-    .from("buku")
-    .select("*", { count: "exact" });
-    if (count) jumlahbuku.value = count;
-}
-
-onMounted(() => {
-    ambiljumlahpengunjung();
-    ambiljumlahbuku();
-});
 </script>
 <style scoped>
   * {
