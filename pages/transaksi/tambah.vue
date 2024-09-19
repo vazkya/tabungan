@@ -14,8 +14,7 @@
                     <div class="mb-3">
                     <select
                         v-model="form.nama"
-                        class="form-control form-control-lg form-select rounded-5"
-                        >
+                        class="form-control form-control-lg form-select rounded-5">
                         <option value="">NAMA</option>
                         <option v-for="(n, i) in obje" :key="i" :value="n.id">
                             {{ n.nama }}
@@ -26,8 +25,7 @@
                 <div class="mb-3">
                     <select
                         v-model="form.bulan"
-                        class="form-control form-control-lg form-select rounded-5"
-                        >
+                        class="form-control form-control-lg form-select rounded-5">
                     <option value="">BULAN</option>
                     <option v-for="(b, i) in objec" :key="i" :value="b.id">
                         {{ b.nama }}
@@ -36,8 +34,7 @@
                 </div>
                 <select
                     v-model="form.keperluan"
-                    class="form-control form-control-lg form-select rounded-5"
-                >
+                    class="form-control form-control-lg form-select rounded-5">
                     <option value="">KEPERLUAN</option>
                     <option v-for="(k, i) in objectives" :key="i" :value="k.id">
                         {{ k.nama }}
@@ -48,23 +45,18 @@
                     v-model="form.jumlah"
                     type="text"
                     class="form-control form-control-lg rounded-5"
-                    placeholder="jumlah.."
-                /><br />
+                    placeholder="jumlah.."/><br />
                 <button
                     type="submit"
-                    class="btn btn-lg rounded-5 px-5 bg-primary text-white"
-                >
+                    class="btn btn-lg rounded-5 px-5 bg-primary text-white">
                     KIRIM
                 </button>
-                <nuxt-link to="../"
-                    ><button
+                <nuxt-link to="../">
+                    <button
                         type="submit"
                         class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
-                        style="float: right"
-                    >
-                        KEMBALI
-                    </button></nuxt-link
-                    >
+                        style="float: right">KEMBALI
+                    </button></nuxt-link>
                     </form>
                 <br />
             </div>
@@ -88,7 +80,7 @@ bulan: "",
 });
 
 const kirimData = async () => {
-    // console.log(form.value)
+    console.log(form.value)
     const { error } = await supabase.from("transaksi").insert([form.value]);
     if (!error) navigateTo("/transaksi");
 };

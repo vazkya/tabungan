@@ -4,25 +4,21 @@
         <img src="~/assets/img/pplg-removebg-preview.png" alt="logo SMKN 4" />
         </div>
         <div class="col-lg-11">
-            <h1>TABUNGAN</h1>
-            <address>
-                XII PPLG 2<br />
-                SMKN 4 TASIKMALAYA
-            </address>
+            <h4>TABUNGAN</h4>
+            <h4>XII PPLG 2</h4>
+            <h4>SMKN 4 Tasikmalaya</h4>
     </div>
     </div>
 </template>
 <style scoped>
 img {
     margin-top: 5px;
-    height: 130px;
-    width: 110px;
+    height: auto;
+    width: 100%;
+    max-width: 200px;
 }
-h1 {
-    margin-top: 10px;
-    margin-left: 5px;
-}
-address {
+h4 {
+    margin-top: 15px;
     margin-left: 5px;
 }
 </style>

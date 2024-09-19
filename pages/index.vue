@@ -6,6 +6,11 @@
         <title>menu</title>
     </head>
     <body>
+        <div class="logout" style="color: black;">
+            <nuxt-link to="/logout">
+            Logout
+            </nuxt-link>
+        </div>
         <div class="container-fluid">
             <div class="row my-5">
                 <div class="col-lg-6">
@@ -51,33 +56,17 @@
     </body>
     </html>
 </template>
-<script setup>
-const supabase = useSupabaseClient();
-</script>
+
 <style scoped>
-  * {
+* {
+    color: white;
     text-decoration: none;
 }
 .card {
     height: 250px;
     margin-right: 27px;
+    margin-top: 20px;
     box-shadow: 3px 1px 10px #424242;
-}
-.card.bg-pengunjung {
-    margin-top: 5%;
-    background-image: url("../assets/img/bg-home-kunjungan.webp");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 90%;
-}
-.card.bg-buku {
-    margin-top: 5%;
-    background-image: url("../assets/img/bg-home-cari-buku.webp");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 90%;
 }
 h2 {
     color: black;
@@ -86,20 +75,17 @@ h2 {
 h1 {
     color: white;
 }
-.card.bg-success {
-    margin-top: 2%;
-}
-.card.bg-warning {
-    margin-top: 2%;
-}
-.statistik {
-    color: black;
-    margin-left: 50px;
-}
 .font {
     text-align: center;
     margin-top: 80px;
     font-size: 250%;
     color: black;
+}
+.logout{
+    margin-top: 25px;
+    background-color: rgb(120, 121, 126);
+    width: 80px;
+    text-align: center;
+    border-radius: 20px;
 }
 </style>

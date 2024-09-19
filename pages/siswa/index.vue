@@ -28,8 +28,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                    <td>#</td>
-                    <td>Nama</td>
+                    <th>#</th>
+                    <th>Nama</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,6 +74,10 @@ onMounted(() => {
 });
 </script>
 <style scoped>
+*{
+    color: black;
+    text-decoration: none;
+}
 .cover {
     width: 100%;
     object-fit: cover;
