@@ -3,7 +3,7 @@
         <div class="row">
         <div class="col-lg-12">
             <h2 class="text-center my-4">RIWAYAT SISWA</h2>
-            <nuxt-link to="../">
+            <nuxt-link to="./">
             <button
                 type="button"
                 class="btn btn-lg rounded-5 px-5 bg-primary text-white"
@@ -14,13 +14,11 @@
             </nuxt-link>
             <div class="my-3">
                 <form @submit.prevent="getTransaksi">
-                <input
-                    v-model="keyword"
-                    type="search"
-                    class="form-control rounded-5"
-                    placeholder="cari transaksi..."
-                />
                 </form>
+            </div>
+
+            <div>
+                <h4 class="my-4">JUMLAH TABUNGAN : {{ totalTabungan }}</h4>
             </div>
             <table class="table table-striped" v-if="transactions.length > 0">
                 <thead>
@@ -54,6 +52,8 @@ const { params } = useRoute();
 const supabase = useSupabaseClient();
 const keyword = ref("");
 const transactions = ref([]);
+const totalTabungan = ref(0);  
+
 const getTransaksi = async () => {
 const { data, error } = await supabase
     .from("transaksi")
@@ -66,17 +66,39 @@ const { data, error } = await supabase
         keperluan (nama),
         siswa (id, nama)
     `)
-    .eq("nama", params.id)  
-    .ilike("keperluan.nama", `%${keyword.value}%`)  
+    .eq("nama", params.id)
+    .ilike("keperluan.nama", `%${keyword.value}%`)
     .order("id", { ascending: false });
     
-    if (error) {
+if (error) {
     console.error("Error fetching transactions:", error.message);
     return;
 }
-    
-    transactions.value = data || [];
+
+transactions.value = data || [];
+const { data: tabunganData, error: tabunganError } = await supabase
+    .from("transaksi")
+    .select(`
+        jumlah,
+        keperluan (nama)
+    `)
+    .eq("nama", params.id);
+
+if (tabunganError) {
+    console.error("Error fetching tabungan:", tabunganError.message);
+    return;
+}
+let total = 0;
+tabunganData.forEach((trans) => {
+    if (trans.keperluan.nama === "menabung") {
+    total += trans.jumlah;
+    } else if (trans.keperluan.nama === "menarik") {
+    total -= trans.jumlah;
+    }
+});
+totalTabungan.value = total;
 };
+
 onMounted(() => {
     getTransaksi();
 });

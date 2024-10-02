@@ -9,7 +9,7 @@
             <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-center my-4">Mari menabung</h2>
+                    <h2 class="text-center my-4">MARI MENABUNG</h2>
                     <form @submit.prevent="kirimData">
                     <div class="mb-3">
                     <select

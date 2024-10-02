@@ -17,16 +17,6 @@
                         style="float: right; margin-bottom: 15px">
                     KEMBALI
                     </button></nuxt-link>
-                    <div class="my-3">
-                        <form @submit.prevent="gettransaksi">
-                            <input
-                            v-model="keyword"
-                            type="search"
-                            class="form-control rounded-5"
-                            placeholder="cari siapa?"
-                            />
-                        </form>
-                    </div>
                     <div class="my-3 text-muted">
                         menampilkan {{ visitors.length }} dari {{ jumlah }}
                     </div>
@@ -67,7 +57,9 @@ const jumlah = ref([]);
 const gettransaksi = async () => {
     const { data, error } = await supabase
     .from("transaksi")
-    .select(`*, nama(*), bulan(*), keperluan(*)`);
+    .select(`*, nama(*), bulan(*), keperluan(*)`)
+    .ilike('nama.nama', `%${keyword.value}`)
+    .order(`id`, {ascending:false})
     if (data) visitors.value = data;
 };
 const totalTransaksi = async () => {
