@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center my-4">RIWAYAT SISWA</h2>
+            <h2 class="text-center my-4" style="color: black">RIWAYAT SISWA</h2>
             <nuxt-link to="./">
             <button
                 type="button"
@@ -18,7 +18,7 @@
             </div>
 
             <div>
-                <h4 class="my-4">JUMLAH TABUNGAN : {{ totalTabungan }}</h4>
+                <h4 class="my-4" style="color: black">JUMLAH TABUNGAN : {{ totalTabungan }}</h4>
             </div>
             <table class="table table-striped" v-if="transactions.length > 0">
                 <thead>

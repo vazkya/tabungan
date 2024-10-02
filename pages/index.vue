@@ -6,33 +6,7 @@
         <title>menu</title>
     </head>
     <body>
-        <div class="logout" style="color: black;">
-            <nuxt-link to="/logout">
-            Logout
-            </nuxt-link>
-        </div>
-        <div class="container-fluid">
-            <div class="row my-5">
-                <div class="col-lg-6">
-                <nuxt-link to="/transaksi/tambah">
-                    <div class="card bg-secondary rounded-5">
-                    <div class="card-body">
-                        <h2 class="font" style="color: white">TRANSAKSI</h2>
-                    </div>
-                </div>
-                </nuxt-link>
-            </div>
-            <div class="col-lg-6">
-                <nuxt-link to="/transaksi">
-                    <div class="card bg-secondary rounded-5">
-                        <div class="card-body">
-                            <h2 class="font" style="color: white">RIWAYAT</h2>
-                        </div>
-                    </div>
-                </nuxt-link>
-            </div>
-            </div>
-        </div>
+        
         <div class="row my-5">
         <div class="col-lg-6">
             <nuxt-link to="/siswa">
@@ -44,10 +18,10 @@
             </nuxt-link>
         </div>
         <div class="col-lg-6">
-            <nuxt-link to="/rekap">
+            <nuxt-link to="/login">
             <div class="card bg-secondary rounded-5">
                     <div class="card-body">
-                        <h1 class="font" style="color: white">REKAP BULANAN</h1>
+                        <h1 class="font" style="color: white">ADMIN</h1>
                     </div>
             </div>
             </nuxt-link>

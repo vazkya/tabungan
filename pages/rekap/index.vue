@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
-        <nuxt-link to="../">
+        <nuxt-link to="/admin">
           <button
             type="button"
             class="btn btn-lg rounded-5 px-5 bg-primary text-white"

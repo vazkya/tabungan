@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-12">
                 <h2 class="text-center my-4">RIWAYAT TRANSAKSI</h2>
-                <nuxt-link to="../">
+                <nuxt-link to="/admin">
                     <button
                         type="submit"
                         class="btn btn-lg rounded-5 px-5 bg-primary text-white"

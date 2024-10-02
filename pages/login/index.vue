@@ -5,6 +5,10 @@
       <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       <input v-model="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       <button type="submit" class="btn">Submit</button>
+      
+      <NuxtLink to="/"> 
+      <button type="submit" class="btn">Kembali</button>
+      </NuxtLink>
     </form>
   </div>
 </template>
@@ -25,14 +29,14 @@ const Login = async () => {
   });
   if (data) {
     loading.value = false
-    navigateTo('/')
+    navigateTo('/admin')
   }
 }
 </script>
 
 <style scoped>
 .login {
-  margin: 250px auto;
+  margin: 150px auto;
   width: 350px;
   padding: 10px;
   border: 1px solid #ccc;

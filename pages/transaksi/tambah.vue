@@ -51,7 +51,7 @@
                     class="btn btn-lg rounded-5 px-5 bg-primary text-white">
                     KIRIM
                 </button>
-                <nuxt-link to="../">
+                <nuxt-link to="/admin">
                     <button
                         type="submit"
                         class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
