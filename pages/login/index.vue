@@ -4,17 +4,17 @@
       <h1 style="text-align: center;" class="log">LOGIN</h1>
       <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       <input v-model="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      <button type="submit" class="btn">Submit</button>
+      <button type="submit" class="btn">LOG IN</button>
       
       <NuxtLink to="/"> 
-      <button type="submit" class="btn">Kembali</button>
+      <button type="submit" class="btn">KEMBALI</button>
       </NuxtLink>
     </form>
   </div>
 </template>
 
 <script setup>
-const supabase= useSupabaseClient()
+const supabase = useSupabaseClient()
 const email = ref("");
 const password = ref("");
 const loading = ref (false);
@@ -43,9 +43,9 @@ const Login = async () => {
   background: rgb(172, 172, 179);
   border-radius: 25px;
 }
-input[type=text], input[type=password] {
-  margin: 5px auto;
-  width: 100%;
+input[type=email], input[type=password] {
+  margin: 20px auto;
+  width: 90%;
   padding: 10px;
 }
 input[type=submit] {
@@ -63,7 +63,7 @@ input[type=submit] {
   background-color: rgb(77, 79, 87);
   color: white;
   width: 100px;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: 20px;
 }
 .log{
