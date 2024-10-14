@@ -24,10 +24,10 @@
                 <thead>
                     <tr>
                     <td>#</td>
-                    <td>Waktu</td>
-                    <td>Bulan</td>
-                    <td>Keperluan</td>
-                    <td>Jumlah</td>
+                    <td>TANGGAL</td>
+                    <td>BULAN</td>
+                    <td>KEPERLUAN</td>
+                    <td>JUMLAH</td>
                 </tr>
                 </thead>
                 <tbody>

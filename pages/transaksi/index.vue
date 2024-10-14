@@ -25,7 +25,7 @@
                             <tr>
                             <td>#</td>
                             <td>NAMA</td>
-                            <td>WAKTU</td>
+                            <td>TANGGAL</td>
                             <td>BULAN</td>
                             <td>KEPERLUAN</td>
                             <td>JUMLAH</td>
