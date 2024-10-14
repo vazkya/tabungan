@@ -13,7 +13,7 @@
                 <nuxt-link to="/admin">
                     <button
                         type="submit"
-                        class="btn btn-lg rounded-5 px-5 bg-primary text-white"
+                        class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
                         style="float: right; margin-bottom: 15px">
                     KEMBALI
                     </button></nuxt-link>
@@ -35,7 +35,7 @@
                         <tr v-for="(visitor, i) in visitors" :key="i">
                         <td>{{ i + 1 }}</td>
                         <td>{{ visitor.nama.nama }}</td>
-                        <td>{{ visitor.tanggal }}, {{ visitor.waktu }}</td>
+                        <td>{{ visitor.tanggal }}</td>
                         <td>{{ visitor.bulan.nama }}</td>
                         <td>{{ visitor.keperluan.nama }}</td>
                         <td>{{ visitor.jumlah }}</td>

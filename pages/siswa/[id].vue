@@ -6,7 +6,7 @@
             <nuxt-link to="./">
             <button
                 type="button"
-                class="btn btn-lg rounded-5 px-5 bg-primary text-white"
+                class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
                 style="float: right; margin-bottom: 15px"
                 >
                 KEMBALI
@@ -18,7 +18,7 @@
             </div>
 
             <div>
-                <h4 class="my-4" style="color: black">JUMLAH TABUNGAN : {{ totalTabungan }}</h4>
+                <h4 class="my-4" style="color: black">JUMLAH TABUNGAN Rp.{{ totalTabungan }}</h4>
             </div>
             <table class="table table-striped" v-if="transactions.length > 0">
                 <thead>
@@ -33,10 +33,10 @@
                 <tbody>
                     <tr v-for="(transaction, i) in transactions" :key="i">
                         <td>{{ i + 1 }}</td>
-                        <td>{{ transaction.tanggal }}, {{ transaction.waktu }}</td>
+                        <td>{{ transaction.tanggal }}</td>
                         <td>{{ transaction.bulan.nama }}</td>
                         <td>{{ transaction.keperluan.nama }}</td>
-                        <td>{{ transaction.jumlah }}</td>
+                        <td>Rp.{{ transaction.jumlah }}</td>
                         </tr>
                 </tbody>
             </table>

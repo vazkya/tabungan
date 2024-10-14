@@ -6,13 +6,13 @@
         <title>menu</title>
     </head>
     <body>
-    <div class="logout" style="color: black;">
+    <div class="logout bg-secondary">
             <nuxt-link to="/logout">
             Logout
             </nuxt-link>
         </div>
         <div class="row my-5">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <nuxt-link to="/transaksi/tambah">
             <div class="card bg-secondary rounded-5">
                 <div class="card-body">
@@ -21,7 +21,7 @@
             </div>
             </nuxt-link>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <nuxt-link to="/rekap">
             <div class="card bg-secondary rounded-5">
                     <div class="card-body">
@@ -30,7 +30,7 @@
             </div>
             </nuxt-link>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <nuxt-link to="/transaksi">
             <div class="card bg-secondary rounded-5">
                 <div class="card-body">
@@ -58,7 +58,7 @@ definePageMeta({
     height: 250px;
     margin-right: 27px;
     margin-top: 20px;
-    box-shadow: 3px 1px 10px #424242;
+    box-shadow: 3px 1px 3px #464646;
 }
 h2 {
     color: black;
@@ -77,6 +77,7 @@ h1 {
     margin-top: 25px;
     background-color: rgb(120, 121, 126);
     width: 80px;
+    height: 30px;
     text-align: center;
     border-radius: 20px;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <form @submit.prevent="Login">
-      <h1 style="text-align: center;" class="log">LOGIN</h1>
+      <h1 style="text-align: center; color: white;" class="log">LOGIN</h1>
       <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       <input v-model="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       <button type="submit" class="btn">LOG IN</button>
@@ -40,11 +40,11 @@ const Login = async () => {
   width: 350px;
   padding: 10px;
   border: 1px solid #ccc;
-  background: rgb(172, 172, 179);
   border-radius: 25px;
+  box-shadow: 0 0 10PX;
 }
 input[type=email], input[type=password] {
-  margin: 20px auto;
+  margin: 30px auto;
   width: 90%;
   padding: 10px;
 }
@@ -60,18 +60,20 @@ input[type=submit] {
 }
 .btn{
   margin-left: 110px;
-  background-color: rgb(77, 79, 87);
+  background-color: rgba(77, 79, 87, 0.61);
   color: white;
   width: 100px;
   margin-top: 5px;
   margin-bottom: 20px;
 }
 .log{
-  background-color: rgb(193, 195, 204);
+  background-color:rgba(77, 79, 87, 0.658);
   border-radius: 25px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   margin-left: 60px;
   width: 200px;
+  font-size: 30px;
+  font-family: sans-serif;
 }
 </style>
