@@ -36,7 +36,7 @@
                         <td>{{ transaction.tanggal }}</td>
                         <td>{{ transaction.bulan.nama }}</td>
                         <td>{{ transaction.keperluan.nama }}</td>
-                        <td>Rp.{{ transaction.jumlah }}</td>
+                        <td>Rp. {{ transaction.jumlah }}</td>
                         </tr>
                 </tbody>
             </table>

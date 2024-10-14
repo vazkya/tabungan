@@ -38,7 +38,7 @@
                         <td>{{ visitor.tanggal }}</td>
                         <td>{{ visitor.bulan.nama }}</td>
                         <td>{{ visitor.keperluan.nama }}</td>
-                        <td>{{ visitor.jumlah }}</td>
+                        <td>Rp. {{ visitor.jumlah }}</td>
                         </tr>
                     </tbody>
                     </table>
