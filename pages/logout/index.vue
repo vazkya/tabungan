@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>tunggu sebentar.....</h3>
+    <h1>tunggu sebentar.....</h1>
   </div>
 </template>
 

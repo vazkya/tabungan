@@ -1,186 +1,176 @@
 <template>
-    <html lang="en">
-        <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>menu</title>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="text-center my-4">RIWAYAT TRANSAKSI</h2>
-                    <nuxt-link to="/admin">
-                        <button
-                            type="submit"
-                            class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
-                            style="float: right; margin-bottom: 15px">
-                        KEMBALI
-                        </button>
-                    </nuxt-link>
-                    <div class="my-3 text-muted">
-                        Menampilkan {{ visitors.length }} dari {{ jumlah }}
-                    </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>NAMA</td>
-                                <td>TANGGAL</td>
-                                <td>BULAN</td>
-                                <td>KEPERLUAN</td>
-                                <td>JUMLAH</td>
-                                <td>AKSI</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(visitor, i) in visitors" :key="i">
-                                <td>{{ i + 1 }}</td>
-                                <td>{{ visitor.nama.nama }}</td>
-                                <td>{{ visitor.tanggal }}</td>
-                                <td>{{ visitor.bulan.nama }}</td>
-                                <td>{{ visitor.keperluan.nama }}</td>
-                                <td>Rp. {{ visitor.jumlah }}</td>
-                                <td>
-                                    <button @click="editTransaksi(visitor)" class="btn btn-primary">
-                                        Edit
-                                    </button>
-                                    <button @click="hapusTransaksi(visitor.id)" class="btn btn-danger">
-                                        Hapus
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <h2 class="text-center my-4">RIWAYAT TRANSAKSI</h2>
+        <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>NAMA</th>
+          <th>TANGGAL</th>
+          <th>BULAN</th>
+          <th>KEPERLUAN</th>
+          <th>JUMLAH</th>
+          <th>AKSI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(visitor, i) in visitors" :key="visitor.id">
+          <td>{{ i + 1 }}</td>
+          <td>{{ visitor.nama.nama }}</td>
+          <td>{{ visitor.tanggal }}</td>
+          <td>{{ visitor.bulan.nama }}</td>
+          <td>{{ visitor.keperluan.nama }}</td>
+          <td>Rp. {{ visitor.jumlah }}</td>
+          <td>
+            <button @click="editData(visitor)" class="btn btn-primary">Edit</button>
+            <button @click="deleteTransaction(visitor.id)" class="btn btn-danger">Hapus</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <div v-if="isEditing" class="modal">
-            <h3>Edit Transaksi</h3>
-            <div>
-                <label>Nama</label>
-                <input v-model="selectedTransaksi.nama.nama" />
-            </div>
-            <div>
-                <label>Tanggal</label>
-                <input type="date" v-model="selectedTransaksi.tanggal" />
-            </div>
-            <div>
-                <label>Bulan</label>
-                <input v-model="selectedTransaksi.bulan.nama" />
-            </div>
-            <div>
-                <label>Keperluan</label>
-                <input v-model="selectedTransaksi.keperluan.nama" />
-            </div>
-            <div>
-                <label>Jumlah</label>
-                <input v-model="selectedTransaksi.jumlah" type="number" />
-            </div>
-            <button @click="updateTransaksi" class="btn btn-success">Simpan</button>
-            <button @click="isEditing = false" class="btn btn-secondary">Batal</button>
+    <div v-if="isEditing" class="modal">
+      <div class="modal-content">
+        <h3 style="text-align:center;">Edit Transaksi</h3>
+        <div>
+          <label>Tanggal</label>
+          <input type="date" v-model="selectedTransaction.tanggal" />
         </div>
-    </body>
-</html>
+        <div>
+          <label>Bulan</label>
+          <input v-model="selectedTransaction.bulan.id" />
+        </div>
+        <div>
+          <label>Keperluan</label>
+          <input v-model="selectedTransaction.keperluan.id" />
+        </div>
+        <div>
+          <label>Jumlah</label>
+          <input v-model="selectedTransaction.jumlah" type="number" />
+        </div>
+        <button @click="updateData" class="simpan bg-primary">SIMPAN</button>
+        <button @click="isEditing = false" class="batal bg-secondary">BATAL</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 const supabase = useSupabaseClient();
-const keyword = ref("");
 const visitors = ref([]);
-const jumlah = ref([]);
-
-
 const isEditing = ref(false);
-const selectedTransaksi = ref(null);
+const selectedTransaction = ref({});
 
-
-const gettransaksi = async () => {
+const fetchTransactions = async () => {
+  try {
     const { data, error } = await supabase
-    .from("transaksi")
-    .select(`*, nama(*), bulan(*), keperluan(*)`)
-    .ilike('nama.nama', `%${keyword.value}`)
-    .order('id', {ascending: false});
-    if (data) visitors.value = data;
+      .from("transaksi")
+      .select(`*, nama(*), bulan(*), keperluan(*)`)
+      .order('id', { ascending: false });
+
+    if (error) throw error;
+
+    visitors.value = data;
+    console.log("Fetched transactions:", visitors.value);
+  } catch (error) {
+    console.error("Error fetching transactions:", error.message);
+  }
+};
+
+const editData = (visitor) => {
+  selectedTransaction.value = { ...visitor };
+  console.log("Editing transaction:", selectedTransaction.value);
+  isEditing.value = true; // Set to true to show modal
 };
 
 
-const totalTransaksi = async () => {
-    const { count } = await supabase
-    .from("transaksi")
-    .select("*", { count: "exact" });
-    jumlah.value = count;
+const updateData = async () => {
+  try {
+    console.log("Updating transaction:", selectedTransaction.value);
+    const { error } = await supabase.from("transaksi").update({
+      nama: selectedTransaction.value.nama.id,
+      tanggal: selectedTransaction.value.tanggal,
+      bulan: selectedTransaction.value.bulan.id,
+      keperluan: selectedTransaction.value.keperluan.id,
+      jumlah: selectedTransaction.value.jumlah,
+    }).eq('id', selectedTransaction.value.id);
+
+    if (error) throw error;
+
+    isEditing.value = false;
+    await fetchTransactions(); // Refresh data
+  } catch (error) {
+    console.error("Error updating data:", error.message);
+  }
 };
 
+const deleteTransaction = async (id) => {
+  const confirmed = confirm("Apakah Anda yakin ingin menghapus transaksi ini?");
+  if (confirmed) {
+    try {
+      const { error } = await supabase.from('transaksi').delete().eq('id', id);
+      if (error) throw error;
 
-const hapusTransaksi = async (id) => {
-    const confirmed = confirm("Apakah Anda yakin ingin menghapus transaksi ini?");
-    if (confirmed) {
-        const { error } = await supabase
-        .from('transaksi')
-        .delete()
-        .eq('id', id);
-
-        if (!error) {
-            visitors.value = visitors.value.filter(visitor => visitor.id !== id);
-            totalTransaksi();
-        } else {
-            console.error("Error menghapus transaksi", error);
-        }
+      visitors.value = visitors.value.filter(visitor => visitor.id !== id);
+    } catch (error) {
+      console.error("Error deleting transaction:", error.message);
     }
+  }
 };
-
-
-const editTransaksi = (transaksi) => {
-    selectedTransaksi.value = { ...transaksi };
-    isEditing.value = true;
-};
-
-
-const updateTransaksi = async () => {
-    const { id, nama, tanggal, bulan, keperluan, jumlah } = selectedTransaksi.value;
-
-    const { error } = await supabase
-        .from('transaksi')
-        .update({
-            nama : nama.nama,
-            tanggal : tanggal,
-            bulan : bulan.nama,
-            keperluan : keperluan.nama,
-            jumlah : jumlah,
-        })
-        .eq('id', id);
-
-    if (!error) {
-        const index = visitors.value.findIndex(visitor => visitor.id === id);
-        if (index !== -1) {
-            visitors.value[index] = { ...selectedTransaksi.value };
-        }
-        isEditing.value = false;
-        totalTransaksi();
-    } else {
-        console.error("Error mengupdate transaksi", error);
-    }
-};
-
 
 onMounted(() => {
-    gettransaksi();
-    totalTransaksi();
+  fetchTransactions();
 });
 </script>
 
 <style>
 .modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white; /* Ubah sesuai kebutuhan */
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Menjaga teks di tengah */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.simpan{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width:100px;
+    color: white;
+}
+.batal{
+    width:100px;
+    color: white;
+}
+.btn{
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 </style>
