@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
       <div class="col-lg-12">
-        <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
         <nuxt-link to="/admin">
           <button
             type="button"
