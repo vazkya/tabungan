@@ -23,7 +23,7 @@
             <table class="table table-striped" v-if="transactions.length > 0">
                 <thead>
                     <tr>
-                    <td>#</td>
+                    <td>No</td>
                     <td>TANGGAL</td>
                     <td>BULAN</td>
                     <td>KEPERLUAN</td>

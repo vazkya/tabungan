@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
       <div class="col-lg-12">
-        <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
         <nuxt-link to="/admin">
           <button
             type="button"
-            class="btn btn-lg rounded-5 px-5 bg-primary text-white"
+            class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
             style="float: right; margin-bottom: 15px"
           >
             KEMBALI
@@ -15,7 +15,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>#</th>
+              <th>No</th>
               <th>Tahun</th>
               <th>Bulan</th>
               <th>Jumlah Pemasukan</th>

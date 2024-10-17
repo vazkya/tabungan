@@ -6,7 +6,7 @@
                 <nuxt-link to="../"
                 ><button
                 type="submit"
-                class="btn btn-lg rounded-5 px-5 bg-primary text-white"
+                class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
                 style="float: right; margin-bottom: 15px"
                 >
                 KEMBALI
@@ -28,7 +28,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th>#</th>
+                    <th>No</th>
                     <th>Nama</th>
                 </tr>
                 </thead>
