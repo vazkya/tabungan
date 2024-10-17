@@ -6,7 +6,7 @@
         <div class="col-lg-11">
             <h4>TABUNGAN</h4>
             <h4>XII PPLG 2</h4>
-            <h4>SMKN 4 Tasikmalaya</h4>
+            <h4>SMKN 4 TASIKMALAYA</h4>
     </div>
     </div>
 </template>
@@ -14,7 +14,7 @@
 img {
     margin-top: 5px;
     height: auto;
-    width: 100%;
+    width: 80%;
     max-width: 200px;
 }
 h4 {
