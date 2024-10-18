@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <h2 class="text-center my-4">RIWAYAT TRANSAKSI</h2>
+            <h2 class="text-center my-4" style="color: black;">RIWAYAT TRANSAKSI</h2>
         <div class="col-lg-12">
             <nuxt-link to="/admin">
             <button
@@ -167,6 +167,7 @@ onMounted(() => {
 h3{
     text-align:center ;
     margin-bottom: 20px;
+    color: black;
 }
 .form-group{
     display: flex;
@@ -174,6 +175,7 @@ h3{
     align-items:center ;
     margin-bottom: 15px;
     width: 100%;
+    color: black;
 }
 .form-group label {
     flex: 1;
