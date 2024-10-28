@@ -41,7 +41,7 @@
                 </tbody>
             </table>
             <div v-else>
-                <p class="text-center text-muted">Tidak ada transaksi ditemukan</p>
+                <p class="text-muted">Tidak ada transaksi ditemukan</p>
             </div>
         </div>
     </div>
