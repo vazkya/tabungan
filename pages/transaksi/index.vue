@@ -30,7 +30,7 @@
                     <td>{{ visitor.keperluan.nama }}</td>
                     <td>Rp. {{ visitor.jumlah }}</td>
                     <td>
-                        <button @click="editData(visitor)" class="btn btn-primary btn-sm mb-2">Edit</button>
+                        <button @click="editData(visitor)" class="btn btn-primary btn-sm mb-2">Edit</button><br>
                         <button @click="deleteTransaction(visitor.id)" class="btn btn-danger btn-sm">Hapus</button>
                     </td>
                     </tr>
