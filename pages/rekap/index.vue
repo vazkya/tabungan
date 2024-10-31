@@ -4,7 +4,7 @@
       <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
       <div class="col-lg-12">
         <nuxt-link to="/admin">
-          <button type="button" class="btn btn-lg rounded-5 px-5 bg-secondary text-white mb-3 float-lg-end">
+          <button type="button" class="btn btn-lg rounded-5 px-5 bg-secondary text-white mb-3">
             KEMBALI
           </button>
         </nuxt-link>
