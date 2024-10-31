@@ -1,51 +1,35 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <h2 class="text-center my-4" style="color: black;">REKAP DATA PER BULAN</h2>
+      <h2 class="text-center my-4">REKAP DATA PER BULAN</h2>
       <div class="col-lg-12">
         <nuxt-link to="/admin">
-          <button
-            type="button"
-            class="btn btn-lg rounded-5 px-5 bg-secondary text-white"
-            style="float: right; margin-bottom: 15px"
-          >
+          <button type="button" class="btn btn-lg rounded-5 px-5 bg-secondary text-white mb-3 float-lg-end">
             KEMBALI
           </button>
         </nuxt-link>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Tahun</th>
-              <th>Bulan</th>
-              <th>Jumlah Pemasukan</th>
-              <th>Jumlah Pengeluaran</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(rekap, index) in rekapData" :key="index">
-              <td>{{ index + 1 }}</td>
-              <td>{{ rekap.tahun }}</td>
-              <td>{{ rekap.bulan }}</td>
-              <td>
-                {{
-                  rekap.jumlahPemasukan.toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                  })
-                }}
-              </td>
-              <td>
-                {{
-                  rekap.jumlahPengeluaran.toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                  })
-                }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Tahun</th>
+                <th>Bulan</th>
+                <th>Jumlah Pemasukan</th>
+                <th>Jumlah Pengeluaran</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(rekap, index) in rekapData" :key="index">
+                <td>{{ index + 1 }}</td>
+                <td>{{ rekap.tahun }}</td>
+                <td>{{ rekap.bulan }}</td>
+                <td>{{ rekap.jumlahPemasukan.toLocaleString("id-ID", { style: "currency", currency: "IDR" }) }}</td>
+                <td>{{ rekap.jumlahPengeluaran.toLocaleString("id-ID", { style: "currency", currency: "IDR" }) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -60,14 +44,7 @@ const fetchRekapData = async () => {
   try {
     const { data, error } = await supabase
       .from("transaksi")
-      .select(
-        `
-        tanggal,
-        bulan (nama),
-        keperluan (nama),
-        jumlah
-      `
-      )
+      .select(`tanggal, bulan (nama), keperluan (nama), jumlah`)
       .order("tanggal", { ascending: false });
 
     if (error) throw error;
@@ -78,7 +55,6 @@ const fetchRekapData = async () => {
       const date = new Date(transaction.tanggal);
       const year = date.getFullYear();
       const month = transaction.bulan.nama;
-
       const key = `${year}-${month}`;
 
       if (!monthlyData[key]) {
@@ -96,18 +72,17 @@ const fetchRekapData = async () => {
         monthlyData[key].jumlahPengeluaran += transaction.jumlah;
       }
     });
+
     rekapData.value = Object.values(monthlyData).sort((a, b) => {
       const dateA = new Date(`${a.tahun}-${getMonthNumber(a.bulan)}-01`);
       const dateB = new Date(`${b.tahun}-${getMonthNumber(b.bulan)}-01`);
       return dateB - dateA;
     });
   } catch (error) {
-    console.error(
-      "Terjadi kesalahan saat mengambil data rekap:",
-      error.message
-    );
+    console.error("Terjadi kesalahan saat mengambil data rekap:", error.message);
   }
 };
+
 const getMonthNumber = (monthName) => {
   const months = [
     "Januari",
@@ -130,3 +105,35 @@ onMounted(() => {
   fetchRekapData();
 });
 </script>
+
+<style scoped>
+/* Table Responsiveness */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Button and Text Alignment */
+h2 {
+  color: black;
+}
+.table-striped th, .table-striped td {
+  white-space: nowrap;
+}
+
+/* Responsive styling */
+@media (max-width: 576px) {
+  .table-responsive {
+    font-size: 12px;
+  }
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  .float-lg-end {
+    float: right;
+  }
+}
+</style>
