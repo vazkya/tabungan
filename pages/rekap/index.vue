@@ -8,6 +8,11 @@
             KEMBALI
           </button>
         </nuxt-link>
+
+        <div class="my-3">
+          <h4>Jumlah Tabungan Saat Ini: {{ jumlahTabungan.toLocaleString("id-ID", { style: "currency", currency: "IDR" }) }}</h4>
+        </div>
+
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -36,9 +41,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 const supabase = useSupabaseClient();
 const rekapData = ref([]);
+
+const jumlahTabungan = computed(() => {
+  return rekapData.value.reduce((total, rekap) => {
+    return total + rekap.jumlahPemasukan - rekap.jumlahPengeluaran;
+  }, 0);
+});
 
 const fetchRekapData = async () => {
   try {
@@ -107,20 +118,15 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Table Responsiveness */
 .table-responsive {
   overflow-x: auto;
 }
-
-/* Button and Text Alignment */
 h2 {
   color: black;
 }
 .table-striped th, .table-striped td {
   white-space: nowrap;
 }
-
-/* Responsive styling */
 @media (max-width: 576px) {
   .table-responsive {
     font-size: 12px;
