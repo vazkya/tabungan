@@ -59,11 +59,43 @@
                     </table>
                 </div>
             </div>
+
+            <!-- Edit Modal -->
+            <div v-if="isEditing" class="modal">
+                <div class="modal-content">
+                    <h3>EDIT TRANSAKSI</h3>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input id="tanggal" type="date" v-model="selectedTransaction.tanggal" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bulan">Bulan</label>
+                        <select id="bulan" v-model="selectedTransaction.bulan.id">
+                            <option v-for="bulan in uniqueBulans" :key="bulan.id" :value="bulan.id">{{ bulan.nama }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="keperluan">Keperluan</label>
+                        <select id="keperluan" v-model="selectedTransaction.keperluan.id">
+                            <option v-for="keperluan in uniqueKeperluans" :key="keperluan.id" :value="keperluan.id">{{ keperluan.nama }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah">Jumlah</label>
+                        <input id="jumlah" type="number" v-model="selectedTransaction.jumlah" />
+                    </div>
+                    <div class="button-group">
+                        <button @click="updateData" class="btn btn-primary">SIMPAN</button>
+                        <button @click="isEditing = false" class="btn btn-secondary">BATAL</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 const supabase = useSupabaseClient();
 const visitors = ref([]);
 const filteredVisitors = ref([]);
@@ -75,7 +107,6 @@ const uniqueBulans = ref([]);
 const uniqueKeperluans = ref([]);
 const isEditing = ref(false);
 const selectedTransaction = ref({});
-
 
 const fetchTransactions = async () => {
     try {
@@ -90,7 +121,6 @@ const fetchTransactions = async () => {
         console.error("Error fetching transactions:", error.message);
     }
 };
-
 
 const fetchUniqueFilters = async () => {
     try {
@@ -107,7 +137,6 @@ const fetchUniqueFilters = async () => {
     }
 };
 
-
 const filterTransactions = () => {
     filteredVisitors.value = visitors.value.filter(visitor => {
         const matchNama = selectedNama.value ? visitor.nama.id === selectedNama.value : true;
@@ -117,12 +146,10 @@ const filterTransactions = () => {
     });
 };
 
-
 const editData = (visitor) => {
     selectedTransaction.value = { ...visitor };
     isEditing.value = true;
 };
-
 
 const updateData = async () => {
     try {
@@ -143,7 +170,6 @@ const updateData = async () => {
     }
 };
 
-
 const deleteTransaction = async (id) => {
     const confirmed = confirm("Apakah Anda yakin ingin menghapus transaksi ini?");
     if (confirmed) {
@@ -159,10 +185,47 @@ const deleteTransaction = async (id) => {
     }
 };
 
-
 onMounted(async () => {
     await fetchTransactions();
     await fetchUniqueFilters();
 });
 </script>
 
+<style scoped>
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+</style>
