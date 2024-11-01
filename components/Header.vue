@@ -13,8 +13,8 @@
 <style scoped>
 img {
     margin-top: 5px;
-    height: auto;
-    width: 80%;
+    height: 100px;
+    width: 100px;
     max-width: 200px;
 }
 h4 {
