@@ -64,7 +64,7 @@
             <div v-if="isEditing" class="modal">
                 <div class="modal-content">
                     <h3>EDIT TRANSAKSI</h3>
-                    <div class="form-group">
+                    <div class="form-group" style="color:black">
                         <label for="tanggal">Tanggal</label>
                         <input id="tanggal" type="date" v-model="selectedTransaction.tanggal" />
                     </div>
@@ -74,13 +74,13 @@
                             <option v-for="bulan in uniqueBulans" :key="bulan.id" :value="bulan.id">{{ bulan.nama }}</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="color: black;">
                         <label for="keperluan">Keperluan</label>
                         <select id="keperluan" v-model="selectedTransaction.keperluan.id">
                             <option v-for="keperluan in uniqueKeperluans" :key="keperluan.id" :value="keperluan.id">{{ keperluan.nama }}</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="color:black;">
                         <label for="jumlah">Jumlah</label>
                         <input id="jumlah" type="number" v-model="selectedTransaction.jumlah" />
                     </div>
