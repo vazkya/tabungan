@@ -68,7 +68,7 @@
                         <label for="tanggal">Tanggal</label>
                         <input id="tanggal" type="date" v-model="selectedTransaction.tanggal" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="color: black;">
                         <label for="bulan">Bulan</label>
                         <select id="bulan" v-model="selectedTransaction.bulan.id">
                             <option v-for="bulan in uniqueBulans" :key="bulan.id" :value="bulan.id">{{ bulan.nama }}</option>
