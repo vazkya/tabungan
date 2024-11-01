@@ -9,8 +9,8 @@
           </button>
         </nuxt-link>
 
-        <div class="my-3">
-          <h4>Jumlah Tabungan Saat Ini: {{ jumlahTabungan.toLocaleString("id-ID", { style: "currency", currency: "IDR" }) }}</h4>
+        <div class="my-3 bg-secondary" style="border-radius: 5px;">
+          <h5 style="color: white; text-align: center;">JUMLAH TABUNGAN SAAT INI : {{ jumlahTabungan.toLocaleString("id-ID", { style: "currency", currency: "IDR" }) }}</h5>
         </div>
 
         <div class="table-responsive">

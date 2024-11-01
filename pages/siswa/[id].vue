@@ -11,8 +11,8 @@
                         KEMBALI
                     </button>
                 </nuxt-link>
-                <div>
-                    <h4 class="my-4" style="color: black">JUMLAH TABUNGAN Rp.{{ totalTabungan }}</h4>
+                <div class="bg-secondary" style="border-radius: 5px;">
+                    <h5 class="my-4" style="color: white; height: 30px;">SALDO : Rp.{{ totalTabungan }}</h5>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped" v-if="transactions.length > 0">
