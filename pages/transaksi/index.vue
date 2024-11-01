@@ -52,7 +52,7 @@
                                 <td>Rp. {{ visitor.jumlah }}</td>
                                 <td>
                                     <button @click="editData(visitor)" class="btn btn-primary btn-sm mb-2">Edit</button><br>
-                                    <button @click="deleteTransaction(visitor.id)" class="btn btn-danger btn-sm" style="float: right;">Hapus</button>
+                                    <button @click="deleteTransaction(visitor.id)" class="btn btn-danger btn-sm">Hapus</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="button-group">
                         <button @click="updateData" class="btn btn-primary">SIMPAN</button>
-                        <button @click="isEditing = false" class="btn btn-secondary">BATAL</button>
+                        <button @click="isEditing = false" class="btn btn-secondary" style="float: right;">BATAL</button>
                     </div>
                 </div>
             </div>
