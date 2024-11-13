@@ -46,6 +46,7 @@
 </div>
 </template>
 <script setup>
+useHead({title: "siswa", meta: [{nama: "nama", content: "DAFTAR SISWA"}]});
 const supabase = useSupabaseClient();
 const keyword = ref("");
 const siswa = ref([]);
