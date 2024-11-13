@@ -67,6 +67,7 @@
 </template>
 
 <script setup>
+useHead({title: "transaksi", meta: [{nama: "transaksi", content: "HALAMAN TRANSAKSI"}]});
 const supabase = useSupabaseClient();
 const obje = ref([]);
 const objec = ref([]);
