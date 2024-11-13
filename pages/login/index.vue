@@ -14,6 +14,7 @@
 </template>
 
 <script setup>
+useHead({title: "login", meta: [{nama: "login", content: "LOGIN ADMIN"}]});
 const supabase = useSupabaseClient()
 const email = ref("");
 const password = ref("");
