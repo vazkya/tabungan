@@ -95,6 +95,7 @@
 </template>
 
 <script setup>
+useHead({title: "riwayat", meta: [{nama: "riwayat", content: "RIWAYAT TRANSAKSI"}]});
 import { ref, onMounted } from 'vue';
 const supabase = useSupabaseClient();
 const visitors = ref([]);
