@@ -43,6 +43,7 @@
 </template>
 
 <script setup>
+useHead({title: "admin", meta: [{nama: "admin", content: "HALAMAN ADMIN"}]});
 definePageMeta({
     middleware: 'auth'
 });
