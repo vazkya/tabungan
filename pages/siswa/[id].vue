@@ -45,6 +45,7 @@
 </template>
 
 <script setup>
+useHead({title: "id", meta: [{nama: "id", content: "JUMLAH TABUNGAN SISWA"}]});
 const { params } = useRoute();
 const supabase = useSupabaseClient();
 const keyword = ref("");
